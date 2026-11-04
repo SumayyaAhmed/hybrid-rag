@@ -1,0 +1,49 @@
+# CI: lint + tests on every push to main and every pull request. See specs/09-ci.md.
+# No API keys here: Voyage and Gemini are replaced by fakes in the tests. The eval is not part of CI.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# a newer push to the same branch cancels the run that is still going
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.21"          # same uv as local and the app image
+          enable-cache: true
+      - name: Install dependencies (exact versions from uv.lock)
+        run: uv sync --frozen
+      - name: Lint (ruff)
+        run: uv run ruff check .
+      - name: Unit tests (no database, no API keys)
+        run: uv run pytest -m "not db"
+
+  database:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.21"
+          enable-cache: true
+      - name: Install dependencies
+        run: uv sync --frozen
+      - name: Build and start Postgres (pgvector + pg_textsearch)
+        run: docker compose up -d --build --wait db
+      - name: Integration tests (migrations, BM25 + vector SQL, ingest, retrieval) on database rag_test
+        run: uv run pytest -m db
+      - name: App image builds
+        run: docker compose build app
+      - name: Postgres logs (only if something failed)
+        if: failure()
+        run: docker compose logs db

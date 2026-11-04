@@ -62,7 +62,9 @@ eval/results*.json
     build: .
     image: hybrid-rag-app
     profiles: ["app"]                 # `make up` / `docker compose up` still start only db
-    env_file: .env                    # API keys + knobs, read at runtime
+    env_file:                         # API keys + knobs, read at runtime
+      - path: .env
+        required: false               # CI has no .env and only builds the image (spec 09)
     environment:
       DATABASE_URL: postgresql://rag:rag@db:5432/rag   # "db" = the db service name; overrides localhost from .env
     depends_on:

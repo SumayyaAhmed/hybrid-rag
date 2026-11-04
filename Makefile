@@ -3,7 +3,7 @@
 
 .DEFAULT_GOAL := help
 .PHONY: help install data up down reset psql logs migrate migration downgrade db-version \
-        ingest stats search ask chat app-build app-chat app-cli app-migrate test eval
+        ingest stats search ask chat app-build app-chat app-cli app-migrate lint test test-db ci eval
 
 MIGRATIONS := db/migrations/versions
 # next readable revision id: highest NNNN_*.py + 1 (0001 if none yet)
@@ -85,8 +85,17 @@ app-migrate: ## alembic upgrade head inside the container
 	docker compose run --rm app alembic upgrade head
 
 # --- quality -------------------------------------------------------------------
-test: ## unit tests
-	uv run pytest -q
+lint: ## ruff check
+	uv run ruff check .
+
+test: ## unit tests (no database, no API keys)
+	uv run pytest -q -m "not db"
+
+test-db: ## integration tests on a separate rag_test database (needs `make up`; real data untouched)
+	uv run pytest -q -m db
+
+ci: lint test test-db ## everything GitHub CI runs (.github/workflows/ci.yml)
+	docker compose build app
 
 eval: ## run the 29-question eval (slow: Voyage 3 req/min)
 	uv run python eval/run_eval.py

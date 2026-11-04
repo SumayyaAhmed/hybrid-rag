@@ -62,7 +62,8 @@ LIMIT %(k)s;
 - Products: the same query on `search_text` with `products_bm25_idx`.
 - `<@>` returns the BM25 score **negated**, so ascending `ORDER BY` puts the best rows first. We flip the sign so higher = better in `--explain`.
 - The `ORDER BY` expression must match the indexed expression exactly, or the index isn't used.
-- The index also returns rows that match **no** query word (score 0). `keyword.py` drops them (`score > 0`).
+- Rows that match **no** query word can come back with score 0. That happens when Postgres picks Seq Scan + Sort
+  instead of the bm25 index, which it does for tiny tables with statistics. `keyword.py` drops them (`score > 0`), and the tests run both plans (spec 09).
 - BM25 scores any matching word, which is like the old `FTS_MODE=or`, but rare words (IDF) weigh more. There is no AND mode.
 - Keyword search shines on exact terms: SKUs, brand names, "warranty", model numbers, all things embeddings blur.
 - Known noise: product `search_text` has labels ("SKU:", "Price:", "Product:"), so a query containing those words gives

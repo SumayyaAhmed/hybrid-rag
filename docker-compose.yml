@@ -22,7 +22,9 @@ services:
     build: .
     image: hybrid-rag-app
     profiles: ["app"]                               # `make up` still starts only db
-    env_file: .env                                  # API keys + knobs, read at runtime (never baked into the image)
+    env_file:                                       # API keys + knobs, read at runtime (never baked into the image)
+      - path: .env
+        required: false                             # CI has no .env and only builds the image
     environment:
       DATABASE_URL: postgresql://rag:rag@db:5432/rag   # "db" = service name; overrides localhost from .env
     depends_on:

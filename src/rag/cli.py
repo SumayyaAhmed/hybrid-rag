@@ -27,7 +27,9 @@ def stats():
     from rag.db import pool
 
     with pool.connection() as conn:
-        counts = conn.execute("SELECT (SELECT count(*) FROM documents), (SELECT count(*) FROM pdf_chunks), (SELECT count(*) FROM products)").fetchone()
+        counts = conn.execute(
+            "SELECT (SELECT count(*) FROM documents), (SELECT count(*) FROM pdf_chunks), (SELECT count(*) FROM products)"
+        ).fetchone()
         per_doc = conn.execute(
             """SELECT d.filename, d.page_count, count(c.id), min(c.token_count), round(avg(c.token_count)), max(c.token_count)
                FROM documents d LEFT JOIN pdf_chunks c ON c.document_id = d.id

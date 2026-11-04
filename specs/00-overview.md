@@ -73,10 +73,12 @@ hybrid-rag/
 ├── eval/
 │   ├── questions.jsonl         # 29 hand-written questions → expected sources + facts
 │   └── run_eval.py
-└── tests/
-    ├── test_chunker.py
-    ├── test_rrf.py
-    └── test_excel_loader.py
+├── tests/                      # `make test` (unit) / `make test-db` (integration on rag_test), spec 09
+│   ├── conftest.py             # creates + migrates rag_test; fake embed/tokenizer; `ingested` fixture
+│   ├── helpers.py              # Hit builders
+│   ├── test_chunker.py, test_excel_loader.py, test_rrf.py, test_min_score.py, test_answer.py, test_prompts.py
+│   └── test_migrations.py, test_ingest.py, test_search_sql.py, test_retrieve_pipeline.py   (@pytest.mark.db)
+└── .github/workflows/ci.yml    # GitHub Actions: lint + unit, database jobs (spec 09)
 ```
 
 ## Tech stack
@@ -96,7 +98,9 @@ hybrid-rag/
 | Tokenizer for chunking | Voyage's tokenizer (`vo.count_tokens(texts, model=EMBED_MODEL)`) | chunk sizes measured in the model's real tokens |
 | LLM | Google Gemini `gemini-2.5-flash` via `google-genai` SDK (free tier) | free for learning; swap behind `llm.py` |
 | CLI | `typer` + `rich` | readable `--explain` tables |
-| Tests | `pytest` | |
+| Tests | `pytest` (+ marker `db`) | unit tests offline; integration tests on a scratch DB |
+| Lint | `ruff` (E, F, W) | catches unused imports / undefined names |
+| CI | GitHub Actions | no API keys in CI: Voyage/Gemini faked |
 
 Install:
 ```bash

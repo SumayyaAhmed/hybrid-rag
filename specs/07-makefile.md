@@ -31,7 +31,10 @@ Commands like `docker compose exec db psql -U rag -d rag` or `uv run alembic upg
 | App container (08) | `app-build` / `app-chat` | `docker compose build app` / `docker compose run --rm app` |
 | | `app-cli ARGS=…` | `docker compose run --rm app rag $(ARGS)` |
 | | `app-migrate` | `docker compose run --rm app alembic upgrade head` |
-| Quality | `test` | `uv run pytest -q` |
+| Quality | `lint` | `uv run ruff check .` |
+| | `test` | `uv run pytest -q -m "not db"` (unit) |
+| | `test-db` | `uv run pytest -q -m db` (integration, `rag_test` DB) |
+| | `ci` | lint + test + test-db + app image build (spec 09) |
 | | `eval` | `uv run python eval/run_eval.py` |
 
 `migration` computes the next 4-digit rev id from the files in `db/migrations/versions/`, keeping the readable `0001, 0002…` ids from 05.

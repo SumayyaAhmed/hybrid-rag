@@ -14,8 +14,9 @@ from rag.config import settings
 if context.config.config_file_name is not None:
     fileConfig(context.config.config_file_name)
 
+# Tests can point Alembic at a scratch database via config.attributes["database_url"]; normally it's DATABASE_URL.
 # .env has postgresql://…; "+psycopg" tells SQLAlchemy to use psycopg 3 (already installed) instead of psycopg2.
-url = settings.database_url.replace("postgresql://", "postgresql+psycopg://", 1)
+url = context.config.attributes.get("database_url", settings.database_url).replace("postgresql://", "postgresql+psycopg://", 1)
 
 
 def run_migrations_offline() -> None:

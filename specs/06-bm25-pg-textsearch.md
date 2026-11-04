@@ -136,5 +136,6 @@ Retrieval-only eval (`run_eval.py --no-llm`), 29 questions:
   and the reranker decides the final order. BM25's advantages (IDF, length normalisation) show up in the
   keyword-stage ranks (`--explain`), and would matter more with a larger corpus.
 - Visible in `--explain`: `"SKU 00123"` → vector rank #8, BM25 rank #1, final rerank 0.799 (kept first).
-- Observed: the bm25 index returns non-matching rows with score 0 (filtered in code); product label words ("SKU", "Price")
+- Observed: non-matching rows come back with score 0 when the planner uses Seq Scan + Sort (small table with stats).
+  The bm25 index scan returns only matches. Filtered in code either way; product label words ("SKU", "Price")
   give every product a ~0.03 score.
