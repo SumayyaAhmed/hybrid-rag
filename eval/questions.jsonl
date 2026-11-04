@@ -1,0 +1,29 @@
+{"q": "How long do I have to send something back?", "expect": ["returns_policy.pdf#Return Window"], "facts": ["30 days"]}
+{"q": "I'm a Stride Club member, do I get longer to return things?", "expect": ["returns_policy.pdf#Return Window"], "facts": ["60 days"]}
+{"q": "Can I return running shoes after I've already run in them?", "expect": ["returns_policy.pdf#30-Day Test Run Guarantee for Running Shoes"], "facts": ["50 km"]}
+{"q": "Can I return a water bottle I already opened?", "expect": ["returns_policy.pdf#Items That Cannot Be Returned"], "facts": ["seal"]}
+{"q": "How much does it cost to return an item for a refund?", "expect": ["returns_policy.pdf#Return Shipping Costs"], "facts": ["6.95"]}
+{"q": "When will I get my money back after a return?", "expect": ["returns_policy.pdf#Refund Timing"], "facts": [["5 to 7", "5-7", "5–7"]]}
+{"q": "Is delivery free?", "expect": ["shipping_policy.pdf#Delivery Options"], "facts": ["75"]}
+{"q": "How fast is express shipping and what does it cost?", "expect": ["shipping_policy.pdf#Delivery Options"], "facts": ["14.95"]}
+{"q": "If I order at 4pm will my order be sent out today?", "expect": ["shipping_policy.pdf#Order Cut-Off Times"], "facts": [["2 pm", "2pm", "2:00"]]}
+{"q": "Do you deliver to Australia?", "expect": ["shipping_policy.pdf#International Shipping"], "facts": [["do not", "don't", "not currently", "no"]]}
+{"q": "My parcel says delivered but I can't find it, what can I do?", "expect": ["shipping_policy.pdf#Lost, Late or Damaged Parcels"], "facts": [["replacement", "refund"]]}
+{"q": "How long is the warranty on shoes?", "expect": ["warranty_policy.pdf#Warranty Periods"], "facts": ["6 months"]}
+{"q": "Is a worn down sole covered by the warranty?", "expect": ["warranty_policy.pdf#What the Warranty Does Not Cover"], "facts": [["not cover", "not covered", "doesn't cover", "does not cover", "no"]]}
+{"q": "How do I make a warranty claim for a broken zipper?", "expect": ["warranty_policy.pdf#How to Make a Warranty Claim"], "facts": ["photos"]}
+{"q": "Do you sell my personal data?", "expect": ["privacy_policy.pdf#Sharing Your Information"], "facts": [["never sell", "do not sell", "don't sell", "never sold"]]}
+{"q": "How can I get my personal data deleted?", "expect": ["privacy_policy.pdf#Your Rights"], "facts": ["30 days"]}
+{"q": "Can I turn off advertising cookies?", "expect": ["privacy_policy.pdf#Cookies"], "facts": [["cookie settings", "cookie banner"]]}
+{"q": "Do you have waterproof running shoes under 100?", "expect": ["sku:00232"], "facts": ["94.50"]}
+{"q": "Tell me about SKU 03001", "expect": ["sku:03001"], "facts": ["64.99"]}
+{"q": "Is the Aerofoot Cloudrunner in stock?", "expect": ["sku:00231"], "facts": [["out of stock", "not in stock", "not currently in stock", "no"]]}
+{"q": "I need something to keep my drinks cold during a run", "expect": ["sku:03002"], "facts": ["19.99"]}
+{"q": "What heart rate monitors do you sell?", "expect": ["sku:04002"], "facts": ["49.99"]}
+{"q": "Running shorts with a pocket for my phone?", "expect": ["sku:02020"], "facts": ["29.99"]}
+{"q": "What's the warranty on the PacerPro GPS watch?", "expect": ["warranty_policy.pdf#Warranty Periods", "sku:04001"], "facts": ["2 years"]}
+{"q": "If the Trailblaze Running Shoe doesn't fit, can I swap it for another size for free?", "expect": ["returns_policy.pdf#Return Shipping Costs", "sku:00123"], "facts": ["free"]}
+{"q": "Do you sell lawnmowers?", "expect": [], "facts": []}
+{"q": "What is the capital of France?", "expect": [], "facts": []}
+{"q": "Do you have tennis rackets?", "expect": [], "facts": []}
+{"q": "Can you recommend a good pizza place nearby?", "expect": [], "facts": []}

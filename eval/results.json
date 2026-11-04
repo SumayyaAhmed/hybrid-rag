@@ -1,0 +1,416 @@
+[
+  {
+    "q": "How long do I have to send something back?",
+    "expect": [
+      "returns_policy.pdf#Return Window"
+    ],
+    "kept": [
+      "returns_policy.pdf#Return Window",
+      "returns_policy.pdf#How to Start a Return",
+      "returns_policy.pdf#30-Day Test Run Guarantee for Running Shoes",
+      "returns_policy.pdf#Refund Timing",
+      "warranty_policy.pdf#How to Make a Warranty Claim",
+      "shipping_policy.pdf#Click and Collect"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "I'm a Stride Club member, do I get longer to return things?",
+    "expect": [
+      "returns_policy.pdf#Return Window"
+    ],
+    "kept": [
+      "returns_policy.pdf#Return Window",
+      "returns_policy.pdf#How to Start a Return",
+      "returns_policy.pdf#30-Day Test Run Guarantee for Running Shoes"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "Can I return running shoes after I've already run in them?",
+    "expect": [
+      "returns_policy.pdf#30-Day Test Run Guarantee for Running Shoes"
+    ],
+    "kept": [
+      "returns_policy.pdf#30-Day Test Run Guarantee for Running Shoes",
+      "returns_policy.pdf#Return Window",
+      "returns_policy.pdf#How to Start a Return",
+      "warranty_policy.pdf#What the Warranty Does Not Cover",
+      "returns_policy.pdf#Refund Timing",
+      "warranty_policy.pdf#Warranty Periods"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "Can I return a water bottle I already opened?",
+    "expect": [
+      "returns_policy.pdf#Items That Cannot Be Returned"
+    ],
+    "kept": [
+      "returns_policy.pdf#Items That Cannot Be Returned",
+      "returns_policy.pdf#Return Window",
+      "returns_policy.pdf#Refund Timing",
+      "returns_policy.pdf#How to Start a Return"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "How much does it cost to return an item for a refund?",
+    "expect": [
+      "returns_policy.pdf#Return Shipping Costs"
+    ],
+    "kept": [
+      "returns_policy.pdf#Return Shipping Costs",
+      "returns_policy.pdf#Refund Timing",
+      "returns_policy.pdf#Return Window",
+      "warranty_policy.pdf#How to Make a Warranty Claim",
+      "returns_policy.pdf#How to Start a Return",
+      "warranty_policy.pdf#Repair, Replacement or Refund"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "When will I get my money back after a return?",
+    "expect": [
+      "returns_policy.pdf#Refund Timing"
+    ],
+    "kept": [
+      "returns_policy.pdf#Refund Timing",
+      "returns_policy.pdf#Return Window",
+      "returns_policy.pdf#How to Start a Return",
+      "shipping_policy.pdf#Click and Collect",
+      "warranty_policy.pdf#Repair, Replacement or Refund",
+      "returns_policy.pdf#30-Day Test Run Guarantee for Running Shoes"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "Is delivery free?",
+    "expect": [
+      "shipping_policy.pdf#Delivery Options"
+    ],
+    "kept": [
+      "shipping_policy.pdf#Delivery Options",
+      "shipping_policy.pdf#Click and Collect",
+      "returns_policy.pdf#Return Shipping Costs",
+      "shipping_policy.pdf#International Shipping"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "How fast is express shipping and what does it cost?",
+    "expect": [
+      "shipping_policy.pdf#Delivery Options"
+    ],
+    "kept": [
+      "shipping_policy.pdf#Delivery Options",
+      "shipping_policy.pdf#International Shipping"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "If I order at 4pm will my order be sent out today?",
+    "expect": [
+      "shipping_policy.pdf#Order Cut-Off Times"
+    ],
+    "kept": [
+      "shipping_policy.pdf#Order Cut-Off Times",
+      "shipping_policy.pdf#Delivery Options",
+      "shipping_policy.pdf#Tracking Your Order"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "Do you deliver to Australia?",
+    "expect": [
+      "shipping_policy.pdf#International Shipping"
+    ],
+    "kept": [
+      "shipping_policy.pdf#International Shipping"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "My parcel says delivered but I can't find it, what can I do?",
+    "expect": [
+      "shipping_policy.pdf#Lost, Late or Damaged Parcels"
+    ],
+    "kept": [
+      "shipping_policy.pdf#Lost, Late or Damaged Parcels",
+      "shipping_policy.pdf#Tracking Your Order"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "How long is the warranty on shoes?",
+    "expect": [
+      "warranty_policy.pdf#Warranty Periods"
+    ],
+    "kept": [
+      "warranty_policy.pdf#Warranty Periods",
+      "returns_policy.pdf#30-Day Test Run Guarantee for Running Shoes",
+      "warranty_policy.pdf#Repair, Replacement or Refund",
+      "warranty_policy.pdf#What the Warranty Does Not Cover",
+      "warranty_policy.pdf#What the Warranty Covers",
+      "warranty_policy.pdf#How to Make a Warranty Claim"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "Is a worn down sole covered by the warranty?",
+    "expect": [
+      "warranty_policy.pdf#What the Warranty Does Not Cover"
+    ],
+    "kept": [
+      "warranty_policy.pdf#What the Warranty Does Not Cover",
+      "warranty_policy.pdf#What the Warranty Covers",
+      "returns_policy.pdf#30-Day Test Run Guarantee for Running Shoes"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "How do I make a warranty claim for a broken zipper?",
+    "expect": [
+      "warranty_policy.pdf#How to Make a Warranty Claim"
+    ],
+    "kept": [
+      "warranty_policy.pdf#How to Make a Warranty Claim",
+      "warranty_policy.pdf#What the Warranty Covers",
+      "warranty_policy.pdf#Repair, Replacement or Refund"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "Do you sell my personal data?",
+    "expect": [
+      "privacy_policy.pdf#Sharing Your Information"
+    ],
+    "kept": [
+      "privacy_policy.pdf#Sharing Your Information",
+      "privacy_policy.pdf#How We Use Your Information"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "How can I get my personal data deleted?",
+    "expect": [
+      "privacy_policy.pdf#Your Rights"
+    ],
+    "kept": [
+      "privacy_policy.pdf#Your Rights",
+      "privacy_policy.pdf#Contact Us"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "Can I turn off advertising cookies?",
+    "expect": [
+      "privacy_policy.pdf#Cookies"
+    ],
+    "kept": [
+      "privacy_policy.pdf#Cookies"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "Do you have waterproof running shoes under 100?",
+    "expect": [
+      "sku:00232"
+    ],
+    "kept": [
+      "sku:00232",
+      "sku:00124",
+      "sku:00123"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "Tell me about SKU 03001",
+    "expect": [
+      "sku:03001"
+    ],
+    "kept": [
+      "sku:03001"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "Is the Aerofoot Cloudrunner in stock?",
+    "expect": [
+      "sku:00231"
+    ],
+    "kept": [
+      "sku:00231",
+      "sku:00232"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "I need something to keep my drinks cold during a run",
+    "expect": [
+      "sku:03002"
+    ],
+    "kept": [
+      "sku:03002",
+      "sku:03001"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "What heart rate monitors do you sell?",
+    "expect": [
+      "sku:04002"
+    ],
+    "kept": [
+      "sku:04002",
+      "sku:04001",
+      "warranty_policy.pdf#Warranty Periods"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "Running shorts with a pocket for my phone?",
+    "expect": [
+      "sku:02020"
+    ],
+    "kept": [
+      "sku:02020"
+    ],
+    "answer": null,
+    "retrieval": true,
+    "rank": 1,
+    "pass": true
+  },
+  {
+    "q": "What's the warranty on the PacerPro GPS watch?",
+    "expect": [
+      "warranty_policy.pdf#Warranty Periods",
+      "sku:04001"
+    ],
+    "kept": [
+      "warranty_policy.pdf#Warranty Periods",
+      "warranty_policy.pdf#Manufacturer Warranties",
+      "warranty_policy.pdf#Repair, Replacement or Refund",
+      "warranty_policy.pdf#What the Warranty Does Not Cover"
+    ],
+    "answer": null,
+    "retrieval": false,
+    "rank": 1,
+    "pass": false
+  },
+  {
+    "q": "If the Trailblaze Running Shoe doesn't fit, can I swap it for another size for free?",
+    "expect": [
+      "returns_policy.pdf#Return Shipping Costs",
+      "sku:00123"
+    ],
+    "kept": [
+      "returns_policy.pdf#Return Shipping Costs",
+      "returns_policy.pdf#How to Start a Return",
+      "returns_policy.pdf#30-Day Test Run Guarantee for Running Shoes",
+      "warranty_policy.pdf#Repair, Replacement or Refund"
+    ],
+    "answer": null,
+    "retrieval": false,
+    "rank": 1,
+    "pass": false
+  },
+  {
+    "q": "Do you sell lawnmowers?",
+    "expect": [],
+    "kept": [],
+    "answer": null,
+    "refused": true,
+    "pass": true
+  },
+  {
+    "q": "What is the capital of France?",
+    "expect": [],
+    "kept": [],
+    "answer": null,
+    "refused": true,
+    "pass": true
+  },
+  {
+    "q": "Do you have tennis rackets?",
+    "expect": [],
+    "kept": [],
+    "answer": null,
+    "refused": true,
+    "pass": true
+  },
+  {
+    "q": "Can you recommend a good pizza place nearby?",
+    "expect": [],
+    "kept": [],
+    "answer": null,
+    "refused": true,
+    "pass": true
+  }
+]

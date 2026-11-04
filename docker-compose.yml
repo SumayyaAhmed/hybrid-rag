@@ -1,0 +1,19 @@
+services:
+  db:
+    build: ./db                                     # pgvector/pgvector:pg18 + pg_textsearch, see db/Dockerfile
+    image: hybrid-rag-db:pg18-bm25
+    command: ["postgres", "-c", "shared_preload_libraries=pg_textsearch"]   # pg_textsearch must be preloaded
+    environment:
+      POSTGRES_USER: rag
+      POSTGRES_PASSWORD: rag
+      POSTGRES_DB: rag
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql                  # PG18 moved the data dir; mount here, not .../data
+    # schema is managed by Alembic (db/migrations), not by init scripts: run `make migrate`
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rag -d rag"]
+      interval: 2s
+      retries: 15
+volumes:
+  pgdata:
