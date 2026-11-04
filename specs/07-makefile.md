@@ -28,6 +28,9 @@ Commands like `docker compose exec db psql -U rag -d rag` or `uv run alembic upg
 | | `search Q=…` | `uv run rag search "$(Q)" --explain` |
 | | `ask Q=…` | `uv run rag ask "$(Q)"` |
 | | `chat` | `uv run python app.py` |
+| App container (08) | `app-build` / `app-chat` | `docker compose build app` / `docker compose run --rm app` |
+| | `app-cli ARGS=…` | `docker compose run --rm app rag $(ARGS)` |
+| | `app-migrate` | `docker compose run --rm app alembic upgrade head` |
 | Quality | `test` | `uv run pytest -q` |
 | | `eval` | `uv run python eval/run_eval.py` |
 

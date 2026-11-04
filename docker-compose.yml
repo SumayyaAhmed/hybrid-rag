@@ -15,5 +15,23 @@ services:
       test: ["CMD-SHELL", "pg_isready -U rag -d rag"]
       interval: 2s
       retries: 15
+
+  # The Python app (chat, rag CLI, alembic). Interactive, so it is started with `docker compose run`, not `up`.
+  # See specs/08-app-container.md. Usage: make app-chat / make app-cli ARGS="stats"
+  app:
+    build: .
+    image: hybrid-rag-app
+    profiles: ["app"]                               # `make up` still starts only db
+    env_file: .env                                  # API keys + knobs, read at runtime (never baked into the image)
+    environment:
+      DATABASE_URL: postgresql://rag:rag@db:5432/rag   # "db" = service name; overrides localhost from .env
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./eval:/app/eval                            # eval results written in the container land in the project
+    stdin_open: true                                # chat loop reads from the keyboard
+    tty: true
+
 volumes:
   pgdata:

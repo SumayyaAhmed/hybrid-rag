@@ -10,6 +10,7 @@ Spec-driven. `specs/` is the source of truth; read the relevant spec before writ
 - `specs/05-migrations.md` — Alembic migrations in `db/migrations/versions/` (hand-written SQL, no ORM)
 - `specs/06-bm25-pg-textsearch.md` — keyword search via pg_textsearch BM25 (replaced Postgres FTS)
 - `specs/07-makefile.md` — `make` targets for common commands
+- `specs/08-app-container.md` — app `Dockerfile` + compose `app` service (`make app-chat`, `make app-cli ARGS=…`)
 
 Workflow: for every change, write/update the spec in `specs/` first, then implement. Schema changes = new Alembic revision (`make migration M="…"`), never edit an applied one.
 
@@ -29,5 +30,5 @@ Workflow: for every change, write/update the spec in `specs/` first, then implem
 - [x] Phase 3 — generation (Gemini thinking disabled to avoid cut-off answers)
 - [x] app.py — interactive chat loop over answer()
 - [x] Phase 4 — eval (eval/questions.jsonl + eval/run_eval.py)
-- [x] Alembic migrations (05), BM25 via pg_textsearch (06), Makefile (07)
+- [x] Alembic migrations (05), BM25 via pg_textsearch (06), Makefile (07), app container (08)
 - Voyage account has no payment method → 3 requests/min; clients.py waits 20s and retries

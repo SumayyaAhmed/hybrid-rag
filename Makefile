@@ -3,7 +3,7 @@
 
 .DEFAULT_GOAL := help
 .PHONY: help install data up down reset psql logs migrate migration downgrade db-version \
-        ingest stats search ask chat test eval
+        ingest stats search ask chat app-build app-chat app-cli app-migrate test eval
 
 MIGRATIONS := db/migrations/versions
 # next readable revision id: highest NNNN_*.py + 1 (0001 if none yet)
@@ -69,6 +69,20 @@ ask: ## full answer: make ask Q="what is the return policy?"
 
 chat: ## interactive chat loop
 	uv run python app.py
+
+# --- app in a container (spec 08) ----------------------------------------------
+app-build: ## build the app image
+	docker compose build app
+
+app-chat: ## chat loop inside the container
+	docker compose run --rm app
+
+app-cli: ## rag CLI inside the container: make app-cli ARGS='search "SKU 00123" --explain'
+	@test -n "$(ARGS)" || (echo "usage: make app-cli ARGS='stats'" && exit 1)
+	docker compose run --rm app rag $(ARGS)
+
+app-migrate: ## alembic upgrade head inside the container
+	docker compose run --rm app alembic upgrade head
 
 # --- quality -------------------------------------------------------------------
 test: ## unit tests

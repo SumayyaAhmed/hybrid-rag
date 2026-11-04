@@ -1,0 +1,7 @@
+# keep secrets and local junk out of the image (specs/08-app-container.md)
+.env
+.venv/
+.git/
+__pycache__/
+.pytest_cache/
+eval/results*.json

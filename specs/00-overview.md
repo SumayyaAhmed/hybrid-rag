@@ -25,11 +25,14 @@ query ──────┤                         ├── RRF fuse ── Vo
 | Migrations | [05-migrations.md](05-migrations.md) | Alembic: versioned schema changes, no re-ingest |
 | BM25 | [06-bm25-pg-textsearch.md](06-bm25-pg-textsearch.md) | keyword search: Postgres FTS → pg_textsearch BM25 |
 | Makefile | [07-makefile.md](07-makefile.md) | short commands: `make help` |
+| App container | [08-app-container.md](08-app-container.md) | run chat / CLI / Alembic in Docker |
 
 ## Folder structure
 ```
 hybrid-rag/
-├── docker-compose.yml          # postgres 18 + pgvector + pg_textsearch (builds db/Dockerfile)
+├── docker-compose.yml          # db: postgres 18 + pgvector + pg_textsearch; app: the Python app (profile "app", spec 08)
+├── Dockerfile                  # app image: python 3.12 + uv sync --frozen (spec 08)
+├── .dockerignore               # keeps .env (API keys) out of the image
 ├── Makefile                    # short commands, `make` lists them (spec 07)
 ├── alembic.ini                 # Alembic config (spec 05)
 ├── .env.example                # copy to .env
