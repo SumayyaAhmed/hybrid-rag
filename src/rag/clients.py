@@ -7,6 +7,7 @@ import voyageai
 from voyageai.error import RateLimitError
 
 from rag.config import settings
+from rag.errors import UpstreamUnavailable
 
 
 @cache
@@ -21,9 +22,9 @@ def with_retry(call, retries: int = 6):
     for attempt in range(retries):
         try:
             return call()
-        except RateLimitError:
+        except RateLimitError as e:
             if attempt == retries - 1:
-                raise
+                raise UpstreamUnavailable("Voyage rate limit: still hit after retrying; try again in a minute.") from e
             print("Voyage rate limit hit, waiting 20s...")
             time.sleep(20)
 

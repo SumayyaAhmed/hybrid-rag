@@ -7,6 +7,7 @@ from google import genai
 from google.genai import errors, types
 
 from rag.config import settings
+from rag.errors import UpstreamUnavailable
 
 
 @cache
@@ -33,11 +34,11 @@ def complete(system: str, user: str, retries: int = 4) -> str:
             if e.code != 429 or attempt == retries - 1:
                 raise
             if "PerDay" in str(e):  # daily free-tier quota: waiting seconds won't help
-                raise RuntimeError(f"Gemini daily free-tier quota for {settings.llm_model} is used up; it resets in ~24h.") from e
+                raise UpstreamUnavailable(f"Gemini daily free-tier quota for {settings.llm_model} is used up; it resets in ~24h.") from e
             reason = "rate limit hit"
         except errors.ServerError as e:  # 503 "high demand" / 500: Google-side and usually temporary
             if attempt == retries - 1:
-                raise RuntimeError(f"Gemini is unavailable right now ({e.code}); try again in a minute.") from e
+                raise UpstreamUnavailable(f"Gemini is unavailable right now ({e.code}); try again in a minute.") from e
             reason = f"server busy ({e.code})"
         wait = 5 * 2**attempt  # back off 5s, 10s, 20s
         print(f"Gemini {reason}, retrying in {wait}s...")

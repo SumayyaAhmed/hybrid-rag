@@ -26,6 +26,8 @@ query ──────┤                         ├── RRF fuse ── Vo
 | BM25 | [06-bm25-pg-textsearch.md](06-bm25-pg-textsearch.md) | keyword search: Postgres FTS → pg_textsearch BM25 |
 | Makefile | [07-makefile.md](07-makefile.md) | short commands: `make help` |
 | App container | [08-app-container.md](08-app-container.md) | run chat / CLI / Alembic in Docker |
+| CI | [09-ci.md](09-ci.md) | GitHub Actions: lint, unit + integration tests |
+| HTTP API | [10-api.md](10-api.md) | FastAPI backend: /ask, /search, /products, … at :8000/docs |
 
 ## Folder structure
 ```
@@ -65,6 +67,8 @@ hybrid-rag/
 │   │   ├── fusion.py           # RRF (pure function, unit tested)
 │   │   ├── rerank.py           # Voyage rerank + min score
 │   │   └── pipeline.py         # retrieve(query) -> list[Hit]
+│   ├── api/                    # FastAPI backend (spec 10): main.py, dependencies.py, schemas.py, routers/
+│   ├── errors.py               # UpstreamUnavailable → HTTP 503
 │   ├── generate/
 │   │   ├── prompts.py          # system prompt + context template
 │   │   ├── llm.py              # thin Gemini wrapper: complete(system, user)
@@ -98,6 +102,7 @@ hybrid-rag/
 | Tokenizer for chunking | Voyage's tokenizer (`vo.count_tokens(texts, model=EMBED_MODEL)`) | chunk sizes measured in the model's real tokens |
 | LLM | Google Gemini `gemini-2.5-flash` via `google-genai` SDK (free tier) | free for learning; swap behind `llm.py` |
 | CLI | `typer` + `rich` | readable `--explain` tables |
+| HTTP API | `fastapi[standard]` (0.162) | Pydantic models, automatic /docs; `def` endpoints run in a threadpool |
 | Tests | `pytest` (+ marker `db`) | unit tests offline; integration tests on a scratch DB |
 | Lint | `ruff` (E, F, W) | catches unused imports / undefined names |
 | CI | GitHub Actions | no API keys in CI: Voyage/Gemini faked |

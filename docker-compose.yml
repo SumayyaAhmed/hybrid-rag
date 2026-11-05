@@ -35,5 +35,24 @@ services:
     stdin_open: true                                # chat loop reads from the keyboard
     tty: true
 
+  # The HTTP API (FastAPI, spec 10). No profile: `make up` starts it with db. Docs: http://localhost:8000/docs
+  api:
+    build: .
+    image: hybrid-rag-app                           # same image as app, different command
+    command: ["fastapi", "run", "--port", "8000"]   # exec form, so lifespan shutdown runs (FastAPI Docker docs)
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: postgresql://rag:rag@db:5432/rag
+    ports: ["127.0.0.1:8000:8000"]                  # localhost only: there is no auth yet
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:                                    # slim image has no curl, so ask Python
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      retries: 10
+
 volumes:
   pgdata:

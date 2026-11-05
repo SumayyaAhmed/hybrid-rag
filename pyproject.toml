@@ -8,6 +8,7 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "alembic>=1.20.1",
+    "fastapi[standard]>=0.162.0",
     "google-genai>=2.34.0",
     "openpyxl>=3.1.5",
     "pandas>=3.1.0",
@@ -53,3 +54,6 @@ select = ["E", "F", "W"]   # pycodestyle errors/warnings + pyflakes (unused impo
 
 [tool.pytest.ini_options]
 markers = ["db: needs Postgres (rag_test database); run with `make test-db`"]
+
+[tool.fastapi]
+entrypoint = "rag.api.main:app"   # `fastapi dev` / `fastapi run` find the app from this (spec 10)

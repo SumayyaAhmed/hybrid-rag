@@ -1,16 +1,11 @@
 """Phase 2 wired together: 4 searches -> RRF -> rerank -> min-score filter, with fake embed + rerank (spec 02)."""
 
 import pytest
-from conftest import FakeEmbed
+from conftest import FakeEmbed, fake_rerank
 
 from rag.retrieve import pipeline, rerank
 
 pytestmark = pytest.mark.db
-
-
-def fake_rerank(relevant_word: str):
-    """Scores 0.9 for texts containing the word, 0.1 otherwise (a stand-in for Voyage's cross-encoder)."""
-    return lambda query, documents: [0.9 if relevant_word in d else 0.1 for d in documents]
 
 
 def test_sku_query_end_to_end(ingested, monkeypatch):

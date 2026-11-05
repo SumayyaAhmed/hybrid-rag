@@ -76,6 +76,11 @@ class FakeEmbed:
         return [fake_embedding(t) for t in texts]
 
 
+def fake_rerank(relevant_word: str):
+    """Stands in for rag.clients.rerank: 0.9 for texts containing the word, 0.1 otherwise (like Voyage's 0-1 scores)."""
+    return lambda query, documents: [0.9 if relevant_word in d else 0.1 for d in documents]
+
+
 def fake_count_tokens(text: str) -> int:
     return len(text.split())            # 1 word = 1 token; avoids downloading Voyage's tokenizer
 

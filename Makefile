@@ -3,7 +3,7 @@
 
 .DEFAULT_GOAL := help
 .PHONY: help install data up down reset psql logs migrate migration downgrade db-version \
-        ingest stats search ask chat app-build app-chat app-cli app-migrate lint test test-db ci eval
+        ingest stats search ask chat app-build app-chat app-cli app-migrate api api-logs lint test test-db ci eval
 
 MIGRATIONS := db/migrations/versions
 # next readable revision id: highest NNNN_*.py + 1 (0001 if none yet)
@@ -20,7 +20,7 @@ data: ## regenerate sample PDFs + catalogue in data/
 	uv run python scripts/make_sample_data.py
 
 # --- database ----------------------------------------------------------------
-up: ## start Postgres (builds the image if needed) and wait until healthy
+up: ## start Postgres + API (builds images if needed) and wait until healthy
 	docker compose up -d --build --wait
 
 down: ## stop Postgres (data is kept)
@@ -29,7 +29,9 @@ down: ## stop Postgres (data is kept)
 reset: ## DELETE all data, recreate DB, migrate, ingest
 	@read -p "This deletes the database volume. Continue? [y/N] " ok && [ "$$ok" = "y" ]
 	docker compose down -v
-	$(MAKE) up migrate ingest
+	docker compose up -d --build --wait db
+	$(MAKE) migrate ingest up
+# (db first: the api's healthcheck only passes once the schema exists)
 
 psql: ## open a psql shell
 	docker compose exec db psql -U rag -d rag
@@ -83,6 +85,13 @@ app-cli: ## rag CLI inside the container: make app-cli ARGS='search "SKU 00123" 
 
 app-migrate: ## alembic upgrade head inside the container
 	docker compose run --rm app alembic upgrade head
+
+# --- HTTP API (FastAPI, spec 10) -----------------------------------------------
+api: ## run the API locally with auto-reload → http://127.0.0.1:8000/docs (stop the docker `api` first: port 8000)
+	uv run fastapi dev
+
+api-logs: ## follow the docker API logs
+	docker compose logs -f api
 
 # --- quality -------------------------------------------------------------------
 lint: ## ruff check

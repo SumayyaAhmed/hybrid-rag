@@ -31,6 +31,7 @@ Commands like `docker compose exec db psql -U rag -d rag` or `uv run alembic upg
 | App container (08) | `app-build` / `app-chat` | `docker compose build app` / `docker compose run --rm app` |
 | | `app-cli ARGS=…` | `docker compose run --rm app rag $(ARGS)` |
 | | `app-migrate` | `docker compose run --rm app alembic upgrade head` |
+| API (10) | `api` / `api-logs` | `uv run fastapi dev` / `docker compose logs -f api` |
 | Quality | `lint` | `uv run ruff check .` |
 | | `test` | `uv run pytest -q -m "not db"` (unit) |
 | | `test-db` | `uv run pytest -q -m db` (integration, `rag_test` DB) |

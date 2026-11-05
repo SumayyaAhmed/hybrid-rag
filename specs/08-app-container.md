@@ -76,6 +76,8 @@ eval/results*.json
 ```
 - Inside the container, `localhost` is the container itself, so the app reaches Postgres by service name `db`.
   Environment variables beat `.env` values in pydantic-settings, so the `.env` file can keep `localhost` for local use.
+- **`.env` is read when a container is created, not on every request.** After changing a key, recreate the container:
+  `docker compose up -d --force-recreate api`. A plain restart keeps the old values.
 - `profiles: ["app"]`: the app is interactive, so it is started with `docker compose run`, not `up`.
   `run` starts `db` first because of `depends_on`.
 
